@@ -17,9 +17,9 @@ app.use(router);
 // routes error handlers
 const fourOfour = require('./middleware/404');
 app.use('*', fourOfour);
-const errors = require('./middleware/error');
+const svrErrors = require('./middleware/error');
+app.use(svrErrors);
 
-app.use(errors);
 module.exports = {
   server: app,
   start: port => {
