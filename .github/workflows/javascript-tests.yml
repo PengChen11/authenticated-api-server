@@ -24,6 +24,8 @@ jobs:
         npm test
       env:
         CI: true
+        DB_URL: ${{ secrets.DB_URL}}
         SECRET: ${{ secrets.SECRET }}
         SINGLE_USE_TOKENS: ${{ secrets.SINGLE_USE_TOKENS}}
+        AUTH_SWITCH: ${{ secrets.AUTH_SWITCH}}
 
