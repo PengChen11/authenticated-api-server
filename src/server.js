@@ -5,7 +5,7 @@ const app = express();
 //global middleware
 app.use(express.json());
 app.use(express.static('./public'));
-const timeStamp = require('./middleware/timestamp.js');
+const timeStamp = require('./middleware/timeStamp.js');
 app.use(timeStamp);
 const logger = require('./middleware/logger.js');
 app.use(logger);
