@@ -3,14 +3,10 @@ require('dotenv').config();
 const superagent = require('superagent');
 const users = require('../model/userModel');
 
-/*
-  Resources
-  https://developer.github.com/apps/building-oauth-apps/
-*/
 
 const tokenServerUrl = 'https://github.com/login/oauth/access_token';
 const remoteAPI = 'https://api.github.com/user';
-const API_SERVER = 'http://localhost:3333/oauth';
+const API_SERVER = 'https://peng-authenticated-api-server.herokuapp.com/oauth';
 const CLIENT_ID = process.env.GITHUB_OAUTH_ID;
 const CLIENT_SECRET = process.env.GITHUB_OAUTH_SECRET;
 

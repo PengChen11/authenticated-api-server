@@ -4,7 +4,7 @@ let URL = 'https://github.com/login/oauth/authorize';
 
 let options = {
   client_id: '371528c4dbf93bed8e02',
-  redirect_uri: 'http://localhost:3333/oauth',
+  redirect_uri: 'https://peng-authenticated-api-server.herokuapp.com/oauth',
   scope: 'read:user',
   state: '401appconsent',
 };
