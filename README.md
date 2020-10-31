@@ -1,5 +1,7 @@
 # Module 3 Final Project: API Server
 
+Deployed server URL: https://peng-authenticated-api-server.herokuapp.com
+
 Implement a fully functional, authenticated and authorized API Server using the latest coding techniques
 
 Over the course of the previous 2 modules, you have separately created an ```auth-server``` and an ```api-server``` … In this lab, you will be integrating those 2 servers to create a single, authenticated API server.
