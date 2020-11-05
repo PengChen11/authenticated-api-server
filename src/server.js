@@ -1,9 +1,12 @@
 'use strict';
 const express = require('express');
 const app = express();
+const cors = require('cors');
+
 
 //global middleware
 app.use(express.json());
+app.use(cors());
 app.use(express.static('./public'));
 const timeStamp = require('./middleware/timeStamp.js');
 app.use(timeStamp);
