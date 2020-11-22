@@ -11,11 +11,11 @@ router.param('model', modelFinder);
 // API routes Definitions
 const {getAll, getOne, createOne, updateOne, deleteOne} = require('./routeHandler/apiRoutesHandler');
 const bearer = require('../middleware/bearer');
-router.get('/sales/:model', bearer, getAll);
-router.get('/sales/:model/:id',bearer, getOne);
-router.post('/sales/:model', bearer,permissions('create'), createOne);
-router.put('/sales/:model/:id', bearer,permissions('update'), updateOne);
-router.delete('/sales/:model/:id', bearer,permissions('delete'), deleteOne);
+router.get('/api/:model', bearer, getAll);
+router.get('/api/:model/:id',bearer, getOne);
+router.post('/api/:model', bearer,permissions('create'), createOne);
+router.put('/api/:model/:id', bearer,permissions('update'), updateOne);
+router.delete('/api/:model/:id', bearer,permissions('delete'), deleteOne);
 
 // User routes definitions
 const {signup, signin} = require('./routeHandler/userRoutesHandler');

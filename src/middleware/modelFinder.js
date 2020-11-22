@@ -1,6 +1,7 @@
 'use strict';
 const product = require('../model/productModel');
 const category = require('../model/categoryModel');
+const todo = require('../model/todoModel.js');
 
 module.exports = (req, res, next)=>{
   let model = req.params.model;
@@ -12,6 +13,10 @@ module.exports = (req, res, next)=>{
     return;
   case 'categories':
     req.model = category;
+    next();
+    return;
+  case 'todo':
+    req.model = todo;
     next();
     return;
   default:

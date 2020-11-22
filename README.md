@@ -1,6 +1,6 @@
 # Module 3 Final Project: API Server
 
-Deployed server URL: https://peng-authenticated-api-server.herokuapp.com
+Deployed server URL: <https://peng-authenticated-api-server.herokuapp.com>
 
 Implement a fully functional, authenticated and authorized API Server using the latest coding techniques
 
