@@ -63,6 +63,7 @@ users.methods.tokenGenerator = function () {
   /* Lab 14 - add capabilities */
   let token = {
     id: this._id,
+    username: this.username,
     role: this.role,
     capabilities: this.capabilities,
   };
@@ -71,7 +72,6 @@ users.methods.tokenGenerator = function () {
 
 users.methods.validation = function(username) {
   let query = { username };
-  console.log('validation this is: ', this);
   return this.findOne(query);
 };
 
@@ -97,17 +97,17 @@ users.statics.createFromOauth = async function(email){
 users.statics.authenticateToken = function (token) {
 
   /* Additional Security Measure */
-  if (usedTokens.has(token)) {
-    console.log('unique fail');
-    return Promise.reject('Invalid Token');
-  }
+  // if (usedTokens.has(token)) {
+  //   console.log('unique fail');
+  //   return Promise.reject('Invalid Token');
+  // }
 
   try {
 
     let parsedToken = jwt.verify(token, SECRET);
 
     /* Additional Security Measure */
-    if (parsedToken.type !== 'key') usedTokens.add(token);
+    // if (parsedToken.type !== 'key') usedTokens.add(token);
 
     // let query = { _id: parsedToken.id };
     return this.findById(parsedToken.id);
