@@ -96,7 +96,7 @@ describe('products API', () => {
 
   it('can post() a new product', async () => {
     let obj = createProduct();
-    let result = await mockRequest.post('/sales/products').send(obj).auth(adminToken, { type: 'bearer' });
+    let result = await mockRequest.post('/api/products').send(obj).auth(adminToken, { type: 'bearer' });
     Object.keys(obj).forEach(key => {
       expect(result.body[key]).toEqual(obj[key]);
     });
@@ -105,29 +105,29 @@ describe('products API', () => {
 
   it('can get() a product', async() => {
     let obj = createProduct();
-    let getAfter = await mockRequest.get('/sales/products').auth(adminToken, { type: 'bearer' });
+    let getAfter = await mockRequest.get('/api/products').auth(adminToken, { type: 'bearer' });
     Object.keys(obj).forEach(key => {
       expect(getAfter.body[0][key]).toEqual(obj[key]);
     });
   });
 
   it('can get() a product by id', async() =>{
-    let getProduct = await mockRequest.get(`/sales/products/${productID}`).auth(userToken, { type: 'bearer' });
+    let getProduct = await mockRequest.get(`/api/products/${productID}`).auth(userToken, { type: 'bearer' });
     expect(getProduct.body[0].name).toBe('apples');
   });
 
   it('Can update() a product by id', async() =>{
     let obj1 = createProduct();
     obj1.name = 'bananas';
-    await mockRequest.put(`/sales/products/${productID}`).send(obj1).auth(adminToken, { type: 'bearer' });
-    let testAfterUpdate = await mockRequest.get(`/sales/products/${productID}`).auth(userToken, { type: 'bearer' });
+    await mockRequest.put(`/api/products/${productID}`).send(obj1).auth(adminToken, { type: 'bearer' });
+    let testAfterUpdate = await mockRequest.get(`/api/products/${productID}`).auth(userToken, { type: 'bearer' });
     expect(testAfterUpdate.body[0].name).toBe('bananas');
   });
 
   it('Can delete() a product by id', async() =>{
 
-    await mockRequest.delete(`/sales/products/${productID}`).send().auth(adminToken, { type: 'bearer' });
-    let testAfterDelete = await mockRequest.get(`/sales/products/${productID}`).auth(userToken, { type: 'bearer' });
+    await mockRequest.delete(`/api/products/${productID}`).send().auth(adminToken, { type: 'bearer' });
+    let testAfterDelete = await mockRequest.get(`/api/products/${productID}`).auth(userToken, { type: 'bearer' });
     expect(testAfterDelete.body).toStrictEqual([]);
   });
 });
@@ -137,7 +137,7 @@ describe('categories API ', () => {
 
   it('can post() a new category', async () => {
     let obj = createCategories();
-    let result = await mockRequest.post('/sales/categories').send(obj).auth(adminToken, { type: 'bearer' });
+    let result = await mockRequest.post('/api/categories').send(obj).auth(adminToken, { type: 'bearer' });
     Object.keys(obj).forEach(key => {
       expect(result.body[key]).toEqual(obj[key]);
     });
@@ -145,14 +145,14 @@ describe('categories API ', () => {
 
   it('can get() a categories', async() => {
     let obj = createCategories();
-    let getAfter = await mockRequest.get('/sales/categories').auth(userToken, { type: 'bearer' });
+    let getAfter = await mockRequest.get('/api/categories').auth(userToken, { type: 'bearer' });
     Object.keys(obj).forEach(key => {
       expect(getAfter.body[0][key]).toEqual(obj[key]);
     });
   });
 
   it('can get() a categories by id', async() =>{
-    let getAfter = await mockRequest.get(`/sales/categories/${categoryID}`).auth(userToken, { type: 'bearer' });
+    let getAfter = await mockRequest.get(`/api/categories/${categoryID}`).auth(userToken, { type: 'bearer' });
     expect(getAfter.body[0].name).toBe('fruit');
   });
 
@@ -160,16 +160,16 @@ describe('categories API ', () => {
 
     let obj2 = createCategories();
     obj2.name = 'vegi';
-    await mockRequest.put(`/sales/categories/${categoryID}`).send(obj2).auth(adminToken, { type: 'bearer' });
-    let testAfterUpdate = await mockRequest.get(`/sales/categories/${categoryID}`).auth(userToken, { type: 'bearer' });
+    await mockRequest.put(`/api/categories/${categoryID}`).send(obj2).auth(adminToken, { type: 'bearer' });
+    let testAfterUpdate = await mockRequest.get(`/api/categories/${categoryID}`).auth(userToken, { type: 'bearer' });
     expect(testAfterUpdate.body[0].name).toBe('vegi');
   });
 
 
   it('Can delete() a categories by id', async() =>{
 
-    await mockRequest.delete(`/sales/categories/${categoryID}`).auth(adminToken, { type: 'bearer' });
-    let testAfterDelete = await mockRequest.get(`/sales/categories/${categoryID}`).auth(userToken, { type: 'bearer' });
+    await mockRequest.delete(`/api/categories/${categoryID}`).auth(adminToken, { type: 'bearer' });
+    let testAfterDelete = await mockRequest.get(`/api/categories/${categoryID}`).auth(userToken, { type: 'bearer' });
     expect(testAfterDelete.body.length).toBe(0);
   });
 

@@ -9,11 +9,12 @@ const permissions = require('../middleware/acl');
 router.param('model', modelFinder);
 
 // API routes Definitions
-const {getAll, getOne, getAllByUser, createOne, updateOne, deleteOne} = require('./routeHandler/apiRoutesHandler');
+const {getAll, getOne, getAllByUser, getAllByCategory, createOne, updateOne, deleteOne} = require('./routeHandler/apiRoutesHandler');
 const bearer = require('../middleware/bearer');
 router.get('/api/:model', bearer, getAll);
 router.get('/api/:model/:id',bearer, getOne);
 router.get('/api/:model/assignee/:assignee',bearer, getAllByUser);
+router.get('/api/:model/category/:category',bearer, getAllByCategory);
 router.post('/api/:model', bearer,permissions('create'), createOne);
 router.put('/api/:model/:id', bearer,permissions('update'), updateOne);
 router.delete('/api/:model/:id', bearer,permissions('delete'), deleteOne);

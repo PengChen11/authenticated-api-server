@@ -4,6 +4,7 @@ function handlerGenerator (method){
   return async (req, res, next)=>{
     const id = req.params.id ? {_id:req.params.id } : {};
     const assignee = req.params.assignee ? {assignee:req.params.assignee} : {};
+    const category = req.params.category ? {category:req.params.category} : {};
     if (!req.model) {
       next();
       return;
@@ -17,6 +18,9 @@ function handlerGenerator (method){
         break;
       case 'findUser':
         result = await req.model.find(assignee);
+        break;
+      case'findByCategory':
+        result = await req.model.find(category);
         break;
       case 'new':
         result = await new req.model(req.body).save();
@@ -38,9 +42,10 @@ function handlerGenerator (method){
 const getAll = handlerGenerator('find');
 const getOne = handlerGenerator('find');
 const getAllByUser = handlerGenerator('findUser');
+const getAllByCategory = handlerGenerator('findByCategory');
 const createOne = handlerGenerator('new');
 const updateOne = handlerGenerator('update');
 const deleteOne = handlerGenerator('delete');
 
 
-module.exports = {getAll, getOne, getAllByUser, createOne, updateOne, deleteOne};
+module.exports = {getAll, getOne, getAllByUser, getAllByCategory, createOne, updateOne, deleteOne};
